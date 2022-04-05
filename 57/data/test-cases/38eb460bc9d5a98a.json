@@ -1,0 +1,222 @@
+{
+  "uid" : "38eb460bc9d5a98a",
+  "name" : "test_cloudbeat_pod_exist",
+  "fullName" : "product.tests.test_cloudbeat#test_cloudbeat_pod_exist",
+  "historyId" : "2edb527ff01f9d839a8dff55ac683ad6",
+  "time" : {
+    "start" : 1649194720698,
+    "stop" : 1649194720698,
+    "duration" : 0
+  },
+  "description" : "\n    This test verifies that pods count is equal to nodes count\n    :param data: (Pods list, Nodes list)\n    :return:\n    ",
+  "descriptionHtml" : "<pre><code>This test verifies that pods count is equal to nodes count\n:param data: (Pods list, Nodes list)\n:return:\n</code></pre>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "cloudbeat_agent",
+    "time" : {
+      "start" : 1649194719379,
+      "stop" : 1649194719379,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "elastic_client",
+    "time" : {
+      "start" : 1649194719379,
+      "stop" : 1649194719380,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "k8s",
+    "time" : {
+      "start" : 1649194719380,
+      "stop" : 1649194719380,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  }, {
+    "name" : "data",
+    "time" : {
+      "start" : 1649194720607,
+      "stop" : 1649194720697,
+      "duration" : 90
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "hasContent" : false,
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false
+  } ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "product"
+  }, {
+    "name" : "tag",
+    "value" : "sanity"
+  }, {
+    "name" : "parentSuite",
+    "value" : "product.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_cloudbeat"
+  }, {
+    "name" : "host",
+    "value" : "test-pod-v1"
+  }, {
+    "name" : "thread",
+    "value" : "8-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "product.tests.test_cloudbeat"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 11,
+        "unknown" : 0,
+        "total" : 11
+      },
+      "items" : [ {
+        "uid" : "8e65491018e5f40f",
+        "reportUrl" : "https://DaveSys911.github.io/cloudbeat/55//#testresult/8e65491018e5f40f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649193886502,
+          "stop" : 1649193886502,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "13cf73635d632d2a",
+        "reportUrl" : "https://DaveSys911.github.io/cloudbeat/53//#testresult/13cf73635d632d2a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649192727896,
+          "stop" : 1649192727896,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "852025b02c5820e8",
+        "reportUrl" : "https://DaveSys911.github.io/cloudbeat/51//#testresult/852025b02c5820e8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649191968071,
+          "stop" : 1649191968071,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "bb52f22f72aeedca",
+        "reportUrl" : "https://DaveSys911.github.io/cloudbeat/49//#testresult/bb52f22f72aeedca",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649191015431,
+          "stop" : 1649191015431,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "6b400121726e29e3",
+        "reportUrl" : "https://DaveSys911.github.io/cloudbeat/36//#testresult/6b400121726e29e3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649179766273,
+          "stop" : 1649179766274,
+          "duration" : 1
+        }
+      }, {
+        "uid" : "6586e35ea0c3e969",
+        "reportUrl" : "https://DaveSys911.github.io/cloudbeat/17//#testresult/6586e35ea0c3e969",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649005179282,
+          "stop" : 1649005179282,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "19470985c897bdad",
+        "reportUrl" : "https://DaveSys911.github.io/cloudbeat/16//#testresult/19470985c897bdad",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649004473094,
+          "stop" : 1649004473094,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "a52acfb3985182a4",
+        "reportUrl" : "https://DaveSys911.github.io/cloudbeat/15//#testresult/a52acfb3985182a4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649002265221,
+          "stop" : 1649002265221,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "1e1653aacd08666",
+        "reportUrl" : "https://DaveSys911.github.io/cloudbeat/14//#testresult/1e1653aacd08666",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649001234261,
+          "stop" : 1649001234261,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "611a21e7590dcef8",
+        "reportUrl" : "https://DaveSys911.github.io/cloudbeat/13//#testresult/611a21e7590dcef8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648999763158,
+          "stop" : 1648999763158,
+          "duration" : 0
+        }
+      } ]
+    },
+    "tags" : [ "product", "sanity" ]
+  },
+  "source" : "38eb460bc9d5a98a.json",
+  "parameterValues" : [ ]
+}
