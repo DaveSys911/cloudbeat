@@ -1,0 +1,216 @@
+{
+  "uid" : "5990ffef79d33822",
+  "name" : "test_elastic_index_exists[kube-api]",
+  "fullName" : "integration.tests.test_output_to_elasticsearch#test_elastic_index_exists",
+  "historyId" : "0849778540401697274d540ce0ac6217",
+  "time" : {
+    "start" : 1649195609397,
+    "stop" : 1649195609485,
+    "duration" : 88
+  },
+  "description" : "\n    This test verifies that findings of all types are sending to elasticsearch\n    :param elastic_client: Elastic API client\n    :param match_type: Findings type for matching\n    :return:\n    ",
+  "descriptionHtml" : "<pre><code>This test verifies that findings of all types are sending to elasticsearch\n:param elastic_client: Elastic API client\n:param match_type: Findings type for matching\n:return:\n</code></pre>\n",
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "cloudbeat_agent",
+    "time" : {
+      "start" : 1649195608821,
+      "stop" : 1649195608821,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "elastic_client",
+    "time" : {
+      "start" : 1649195608821,
+      "stop" : 1649195608822,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "k8s",
+    "time" : {
+      "start" : 1649195608822,
+      "stop" : 1649195608822,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "tag",
+    "value" : "integration"
+  }, {
+    "name" : "parentSuite",
+    "value" : "integration.tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_output_to_elasticsearch"
+  }, {
+    "name" : "host",
+    "value" : "test-pod-v1"
+  }, {
+    "name" : "thread",
+    "value" : "8-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "integration.tests.test_output_to_elasticsearch"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "match_type",
+    "value" : "'kube-api'"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 12,
+        "unknown" : 0,
+        "total" : 12
+      },
+      "items" : [ {
+        "uid" : "f31b60ae80746550",
+        "reportUrl" : "https://DaveSys911.github.io/cloudbeat/57//#testresult/f31b60ae80746550",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649194720556,
+          "stop" : 1649194720591,
+          "duration" : 35
+        }
+      }, {
+        "uid" : "e4afb3b86670b326",
+        "reportUrl" : "https://DaveSys911.github.io/cloudbeat/55//#testresult/e4afb3b86670b326",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649193886309,
+          "stop" : 1649193886411,
+          "duration" : 102
+        }
+      }, {
+        "uid" : "20f1a63a0aa5ba77",
+        "reportUrl" : "https://DaveSys911.github.io/cloudbeat/53//#testresult/20f1a63a0aa5ba77",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649192727750,
+          "stop" : 1649192727793,
+          "duration" : 43
+        }
+      }, {
+        "uid" : "8b18da4e71b8568b",
+        "reportUrl" : "https://DaveSys911.github.io/cloudbeat/51//#testresult/8b18da4e71b8568b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649191967946,
+          "stop" : 1649191967972,
+          "duration" : 26
+        }
+      }, {
+        "uid" : "de612e6c03d5cded",
+        "reportUrl" : "https://DaveSys911.github.io/cloudbeat/49//#testresult/de612e6c03d5cded",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649191015215,
+          "stop" : 1649191015292,
+          "duration" : 77
+        }
+      }, {
+        "uid" : "7acd66a0a6a6ae4b",
+        "reportUrl" : "https://DaveSys911.github.io/cloudbeat/36//#testresult/7acd66a0a6a6ae4b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649179765981,
+          "stop" : 1649179766118,
+          "duration" : 137
+        }
+      }, {
+        "uid" : "96106be3632cc802",
+        "reportUrl" : "https://DaveSys911.github.io/cloudbeat/17//#testresult/96106be3632cc802",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649005179041,
+          "stop" : 1649005179108,
+          "duration" : 67
+        }
+      }, {
+        "uid" : "48b8f9c6e6b65729",
+        "reportUrl" : "https://DaveSys911.github.io/cloudbeat/16//#testresult/48b8f9c6e6b65729",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649004472988,
+          "stop" : 1649004473011,
+          "duration" : 23
+        }
+      }, {
+        "uid" : "c9c993e8c8a8f01f",
+        "reportUrl" : "https://DaveSys911.github.io/cloudbeat/15//#testresult/c9c993e8c8a8f01f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649002265034,
+          "stop" : 1649002265076,
+          "duration" : 42
+        }
+      }, {
+        "uid" : "f928ebeac35c2205",
+        "reportUrl" : "https://DaveSys911.github.io/cloudbeat/14//#testresult/f928ebeac35c2205",
+        "status" : "passed",
+        "time" : {
+          "start" : 1649001234083,
+          "stop" : 1649001234135,
+          "duration" : 52
+        }
+      }, {
+        "uid" : "7bf384bc0c60cd56",
+        "reportUrl" : "https://DaveSys911.github.io/cloudbeat/13//#testresult/7bf384bc0c60cd56",
+        "status" : "passed",
+        "time" : {
+          "start" : 1648999762833,
+          "stop" : 1648999762981,
+          "duration" : 148
+        }
+      } ]
+    },
+    "tags" : [ "integration" ]
+  },
+  "source" : "5990ffef79d33822.json",
+  "parameterValues" : [ "'kube-api'" ]
+}
