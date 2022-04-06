@@ -1,4 +1,12 @@
 [ {
+  "buildOrder" : 2,
+  "reportUrl" : "https://DaveSys911.github.io/cloudbeat/2/",
+  "reportName" : "Allure Report with history",
+  "data" : {
+    "run" : 0,
+    "retry" : 0
+  }
+}, {
   "data" : {
     "run" : 0,
     "retry" : 0
