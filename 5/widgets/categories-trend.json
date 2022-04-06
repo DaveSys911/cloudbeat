@@ -1,4 +1,9 @@
 [ {
+  "buildOrder" : 5,
+  "reportUrl" : "https://DaveSys911.github.io/cloudbeat/5/",
+  "reportName" : "Allure Report with history",
+  "data" : { }
+}, {
   "buildOrder" : 3,
   "reportUrl" : "https://DaveSys911.github.io/cloudbeat/3/",
   "reportName" : "Allure Report with history",
