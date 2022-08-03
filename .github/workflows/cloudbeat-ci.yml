@@ -16,131 +16,215 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  Build:
-    name: Build
+  # build-cloudbeat:
+  #   name: Build cloudbeat
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 15
+  #   steps:
+  #     - name: Check out the repo
+  #       uses: actions/checkout@v2
+
+  #     - name: Set up Go
+  #       uses: actions/setup-go@v2
+  #       with:
+  #         go-version: ${{ env.GO_VERSION }}
+
+  #     - name: cache go dependencies
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: |
+  #           ~/go/pkg/mod
+  #           ~/.cache/go-build
+  #         key: ${{ runner.os }}-go-${{ matrix.go-version }}-${{ hashFiles('**/go.sum') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-go-${{ matrix.go-version }}-
+
+  #     - name: build cloudbeat
+  #       run: make
+
+  #     - name: Set up Docker Buildx
+  #       uses: docker/setup-buildx-action@v1
+
+  #     - name: Cache Build dependencies
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: /tmp/.buildx-cache
+  #         key: ${{ runner.os }}-buildx-${{ github.workflow }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-buildx-
+
+  #     - name: Build cloudbeat-docker
+  #       uses: docker/build-push-action@v2
+  #       with:
+  #         context: .
+  #         push: false
+  #         tags: cloudbeat:latest
+  #         cache-from: type=local,src=/tmp/.buildx-cache
+  #         cache-to: type=local,dest=/tmp/.buildx-cache-new
+  #         outputs: type=docker,dest=/tmp/cloudbeat-${{ env.CONTAINER_SUFFIX }}.tar
+
+  #     - name: Build pytest-docker
+  #       uses: docker/build-push-action@v2
+  #       with:
+  #         context: ./tests/.
+  #         push: false
+  #         tags: cloudbeat-test:latest
+  #         cache-from: type=local,mode=max,src=/tmp/.buildx-cache
+  #         cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-new
+  #         outputs: type=docker,dest=/tmp/pytest-${{ env.CONTAINER_SUFFIX }}.tar
+
+  #     - name: Cache docker images
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: /tmp/*.tar
+  #         key: ${{ runner.os }}-dockers-cache-${{ env.CONTAINER_SUFFIX }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-dockers-cache-
+
+  #     - name: Move cache
+  #       run: |
+  #         rm -rf /tmp/.buildx-cache
+  #         mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+
+  agent-build:
+    name: Build Agent
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Check out the repo
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          path: cloudbeat
+
+      - name: Checkout tools repo
+        uses: actions/checkout@v3
+        with:
+          repository: elastic/elastic-agent
+          path: elastic-agent
 
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
           go-version: ${{ env.GO_VERSION }}
 
-      - name: cache go dependencies
-        uses: actions/cache@v2
-        with:
-          path: |
-            ~/go/pkg/mod
-            ~/.cache/go-build
-          key: ${{ runner.os }}-go-${{ matrix.go-version }}-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-${{ matrix.go-version }}-
+      # - name: cache go dependencies
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: |
+      #       ~/go/pkg/mod
+      #       ~/.cache/go-build
+      #     key: ${{ runner.os }}-go-${{ matrix.go-version }}-${{ hashFiles('**/go.sum') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-go-${{ matrix.go-version }}-
 
-      - name: build cloudbeat
-        run: make
+      - name: Build agent docker
+        working-directory: cloudbeat/.
+        run: make PackageAgent
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+      # - name: Mage Check
+      #   uses: magefile/mage-action@v1.6.0
+      #   with:
+      #     args: check
+
+      # - name: Set up Docker Buildx
+      #   uses: docker/setup-buildx-action@v1
 
       - name: Cache Build dependencies
         uses: actions/cache@v2
         with:
-          path: /tmp/.buildx-cache
+          path: elastic-agent/build/*
           key: ${{ runner.os }}-buildx-${{ github.workflow }}
           restore-keys: |
             ${{ runner.os }}-buildx-
 
-      - name: Build cloudbeat-docker
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: false
-          tags: cloudbeat:latest
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache-new
-          outputs: type=docker,dest=/tmp/cloudbeat-${{ env.CONTAINER_SUFFIX }}.tar
+      # - name: Build cloudbeat-docker
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     context: .
+      #     push: false
+      #     tags: cloudbeat:latest
+      #     cache-from: type=local,src=/tmp/.buildx-cache
+      #     cache-to: type=local,dest=/tmp/.buildx-cache-new
+      #     outputs: type=docker,dest=/tmp/cloudbeat-${{ env.CONTAINER_SUFFIX }}.tar
 
-      - name: Build pytest-docker
-        uses: docker/build-push-action@v2
-        with:
-          context: ./tests/.
-          push: false
-          tags: cloudbeat-test:latest
-          cache-from: type=local,mode=max,src=/tmp/.buildx-cache
-          cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-new
-          outputs: type=docker,dest=/tmp/pytest-${{ env.CONTAINER_SUFFIX }}.tar
+      # - name: Build pytest-docker
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     context: ./tests/.
+      #     push: false
+      #     tags: cloudbeat-test:latest
+      #     cache-from: type=local,mode=max,src=/tmp/.buildx-cache
+      #     cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-new
+      #     outputs: type=docker,dest=/tmp/pytest-${{ env.CONTAINER_SUFFIX }}.tar
 
       - name: Cache docker images
         uses: actions/cache@v2
         with:
-          path: /tmp/*.tar
+          path: elastic-agent/build/distributions/elastic-agent-8.4.0-SNAPSHOT-linux-arm64.docker.tar.gz
           key: ${{ runner.os }}-dockers-cache-${{ env.CONTAINER_SUFFIX }}
           restore-keys: |
             ${{ runner.os }}-dockers-cache-
 
-      - name: Move cache
-        run: |
-          rm -rf /tmp/.buildx-cache
-          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+      # - name: Move cache
+      #   run: |
+      #     rm -rf elastic-agent/build/*
+      #     mv /tmp/.buildx-cache-new /tmp/.buildx-cache
 
-  Test_Matrix:
-    name: ${{ matrix.test-target }}-tests
-    needs: Build
-    runs-on: ubuntu-latest
-    timeout-minutes: 55
-    strategy:
-      matrix:
-        # test-targets chosen by stabillity and runtime.Only pre_merge will be set as mandatory
-        test-target: [pre_merge, file_system_rules, k8s_object_rules, process_scheduler_rules, process_api_server_rules, process_controller_manager_rules, process_etcd_rules, process_kubelet_rules]
-      fail-fast: false
-    steps:
-      - name: Check out the repo
-        uses: actions/checkout@v2
+  # Test_Matrix:
+  #   name: ${{ matrix.test-target }}-tests
+  #   needs: Build
+  #   runs-on: ubuntu-latest
+  #   timeout-minutes: 55
+  #   strategy:
+  #     matrix:
+  #       # test-targets chosen by stabillity and runtime.Only pre_merge will be set as mandatory
+  #       test-target: [pre_merge, file_system_rules, k8s_object_rules, process_scheduler_rules, process_api_server_rules, process_controller_manager_rules, process_etcd_rules, process_kubelet_rules]
+  #     fail-fast: false
+  #   steps:
+  #     - name: Check out the repo
+  #       uses: actions/checkout@v2
 
-      - uses: azure/setup-helm@v1
-        id: install
+  #     - uses: azure/setup-helm@v1
+  #       id: install
 
-      - uses: extractions/setup-just@v1
+  #     - uses: extractions/setup-just@v1
 
-      - name: Create k8s Kind Cluster
-        uses: helm/kind-action@v1.2.0
-        with:
-          config: deploy/k8s/kind/kind-config.yml
-          cluster_name: kind-mono
+  #     - name: Create k8s Kind Cluster
+  #       uses: helm/kind-action@v1.2.0
+  #       with:
+  #         config: deploy/k8s/kind/kind-config.yml
+  #         cluster_name: kind-mono
 
-      - name: Cache docker images
-        uses: actions/cache@v2
-        with:
-          path: /tmp/*.tar
-          key: ${{ runner.os }}-dockers-cache-${{ env.CONTAINER_SUFFIX }}
-          restore-keys: |
-            ${{ runner.os }}-dockers-cache-${{ env.CONTAINER_SUFFIX }}
+  #     - name: Cache docker images
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: /tmp/*.tar
+  #         key: ${{ runner.os }}-dockers-cache-${{ env.CONTAINER_SUFFIX }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-dockers-cache-${{ env.CONTAINER_SUFFIX }}
 
-      - name: Load images to kind
-        run: |
-          kind load image-archive /tmp/cloudbeat-${{ env.CONTAINER_SUFFIX }}.tar --name=kind-mono & kind load image-archive /tmp/pytest-${{ env.CONTAINER_SUFFIX }}.tar --name=kind-mono
+  #     - name: Load images to kind
+  #       run: |
+  #         kind load image-archive /tmp/cloudbeat-${{ env.CONTAINER_SUFFIX }}.tar --name=kind-mono & kind load image-archive /tmp/pytest-${{ env.CONTAINER_SUFFIX }}.tar --name=kind-mono
 
-      - name: Deploy tests Helm chart
-        id: deploy_helm
-        run: |
-          just deploy-tests-helm-ci ${{ matrix.test-target }}
+  #     - name: Deploy tests Helm chart
+  #       id: deploy_helm
+  #       run: |
+  #         just deploy-tests-helm-ci ${{ matrix.test-target }}
 
-      - name: Run Tests
-        id: run_tests
-        run: |
-          just run-tests-ci
+  #     - name: Run Tests
+  #       id: run_tests
+  #       run: |
+  #         just run-tests-ci
 
-      - name: Upload Test Results
-        if: always()
-        uses: actions/upload-artifact@v2
-        with:
-          name: allure_results-${{ matrix.test-target}}
-          path: tests/allure/results/
+  #     - name: Upload Test Results
+  #       if: always()
+  #       uses: actions/upload-artifact@v2
+  #       with:
+  #         name: allure_results-${{ matrix.test-target}}
+  #         path: tests/allure/results/
 
-      - name: clear cache
-        id: clear_cache
-        if: success()
-        run: rm -rf /tmp/${{ env.CONTAINER_SUFFIX }}.tar
+  #     - name: clear cache
+  #       id: clear_cache
+  #       if: success()
+  #       run: rm -rf /tmp/${{ env.CONTAINER_SUFFIX }}.tar
