@@ -124,6 +124,13 @@ jobs:
         working-directory: elastic-agent/.
         run: make mage
 
+      - name: Install Mage
+        run: |
+          git clone https://github.com/magefile/mage@v1.13.0
+          cd mage
+          go run bootstrap.go
+          mage -version
+
       - name: Build agent docker
         working-directory: cloudbeat/.
         run: make PackageAgent
