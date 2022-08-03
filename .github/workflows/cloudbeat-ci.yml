@@ -126,7 +126,7 @@ jobs:
 
       - name: Install Mage
         run: |
-          git clone https://github.com/magefile/mage@v1.13.0
+          git clone https://github.com/magefile/mage
           cd mage
           go run bootstrap.go
           mage -version
