@@ -1,6 +1,9 @@
 name: Cloudbeat-CI
 
 on:
+  push:
+    branches:
+      - "agent-dev-ci"
   pull_request:
     branches:
       - main
