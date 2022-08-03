@@ -120,6 +120,10 @@ jobs:
       #     restore-keys: |
       #       ${{ runner.os }}-go-${{ matrix.go-version }}-
 
+      - name: Install Mage
+        working-directory: elastic-agent/.
+        run: make mage
+
       - name: Build agent docker
         working-directory: cloudbeat/.
         run: make PackageAgent
