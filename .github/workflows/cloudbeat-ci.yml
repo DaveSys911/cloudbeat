@@ -92,7 +92,7 @@ jobs:
   agent-build:
     name: Build Agent
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 80
     steps:
       - name: Checkout
         uses: actions/checkout@v3
